@@ -1,1 +1,8 @@
-title,year,rating
+title,year,rating,genre
+Movie 1,1970,10,action
+Movie 2,1990,7.5,drama
+Movie 3,1999,5.5,drama
+Movie 4,2007,8.1,action
+Movie 5,1992,4.5,comedy
+Movie 6,2002,6.8,action
+Movie 7,20021,5.7,comedy

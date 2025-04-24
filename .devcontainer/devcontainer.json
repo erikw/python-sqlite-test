@@ -4,6 +4,7 @@
         "vscode": {
             "extensions": [
                 "janisdd.vscode-edit-csv",
+                "alexcvzz.vscode-sqlite",
             ]
         }
     }
