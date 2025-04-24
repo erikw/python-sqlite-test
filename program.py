@@ -2,7 +2,12 @@
 import db
 
 def main():
-    db.init()
+    db_con = db.init()
+    movies = db.get_movies(db_con)
+    for movie in movies:
+        print(f"Title: {movie['title']}, Year: {movie['year']}, Rating: {movie['rating']}, Genre: {movie['genre']}")
+
+    db.close(db_con)
 
 
 
