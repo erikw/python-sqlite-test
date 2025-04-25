@@ -1,5 +1,6 @@
 import sqlite3
 import csv
+from movies import Movie
 
 CSV_GENRES = "genres.csv"
 CSV_MOVIES = "movies.csv"
@@ -65,4 +66,15 @@ def get_movies(con):
                 """)
     rows = cur.fetchall()
     columns = [column[0] for column in cur.description]
-    return [dict(zip(columns, row)) for row in rows]
+    movies_raw = [dict(zip(columns, row)) for row in rows]
+    movies = []
+    for movie_raw in movies_raw:
+        movies.append(Movie(movie_raw["title"], movie_raw["year"], movie_raw["rating"], movie_raw["genre"]))
+    return movies
+
+def insert_movie(db_con, movie):
+    cur = db_con.cursor()
+    genre_id = cur.execute("SELECT id FROM genres WHERE name = ?", (movie.genre,)).fetchone()[0]
+    cur.execute("INSERT INTO movies (title, year, rating, genre_id) VALUES (?, ?, ?, ?)",
+                (movie.title, movie.year, movie.rating, genre_id))
+    db_con.commit()
